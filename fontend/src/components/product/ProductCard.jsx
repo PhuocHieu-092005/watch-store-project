@@ -13,7 +13,7 @@ const ProductCard = ({ product }) => {
 
   // === LOGIC SỬA LỖI HIỂN THỊ ẢNH ===
   const imageUrl = product.imageUrl?.startsWith("/")
-    ? `http://localhost:8081${product.imageUrl}`
+    ? `https://watch-store-project.onrender.com`
     : product.imageUrl;
 
   return (

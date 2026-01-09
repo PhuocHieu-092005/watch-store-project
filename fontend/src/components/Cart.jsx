@@ -44,7 +44,7 @@ const Cart = () => {
                 {cartItems.map((item) => {
                   // === LOGIC SỬA LỖI HIỂN THỊ ẢNH ===
                   const imageUrl = item.imageUrl?.startsWith("/")
-                    ? `http://localhost:8081${item.imageUrl}`
+                    ? `https://watch-store-project.onrender.com`
                     : item.imageUrl;
 
                   return (

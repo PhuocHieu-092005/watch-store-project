@@ -23,7 +23,7 @@ const CheckoutPage = () => {
     if (url.startsWith("http://") || url.startsWith("https://")) {
       return url; // Nếu đã là URL đầy đủ thì giữ nguyên
     }
-    return `http://localhost:8081${url}`; // Nếu là đường dẫn tương đối thì ghép thêm localhost
+    return `https://watch-store-project.onrender.com`; // Nếu là đường dẫn tương đối thì ghép thêm localhost
   };
   // ------------------------------------------
 
