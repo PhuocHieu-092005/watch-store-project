@@ -1,5 +1,7 @@
 // src/mockData.js
+import axios from "axios";
 
+// 1. DỮ LIỆU MẪU (Giữ nguyên)
 export const mockProducts = [
   {
     id: 1,
@@ -11,7 +13,7 @@ export const mockProducts = [
     imageUrl:
       "https://images.pexels.com/photos/190819/pexels-photo-190819.jpeg",
     stock: 15,
-  }, // <--- Lỗi 1: Thiếu dấu phẩy ở đây
+  },
   {
     id: 2,
     name: "Seiko 5 Sport",
@@ -34,3 +36,35 @@ export const mockProducts = [
     stock: 8,
   },
 ];
+
+// 2. CẤU HÌNH KẾT NỐI API (Sửa lại cho đúng với Render)
+// Tạo một instance của axios
+const apiClient = axios.create({
+  // QUAN TRỌNG: Trỏ thẳng về Render, không dùng localhost nữa
+  baseURL: "https://watch-store-project.onrender.com",
+  headers: {
+    "Content-Type": "application/json",
+  },
+});
+
+// Can thiệp vào mỗi request TRƯỚC KHI nó được gửi đi
+apiClient.interceptors.request.use(
+  (config) => {
+    // Lấy token từ localStorage (nếu có chức năng đăng nhập)
+    const token = localStorage.getItem("token");
+
+    // Nếu có token, thêm nó vào header Authorization
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+
+    return config;
+  },
+  (error) => {
+    // Xử lý lỗi nếu có
+    return Promise.reject(error);
+  }
+);
+
+// Xuất apiClient ra để các file khác dùng
+export default apiClient;
